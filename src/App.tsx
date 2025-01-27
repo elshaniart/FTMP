@@ -1,51 +1,29 @@
-import { supabase } from "../supabaseClient";
-import { useState, useEffect } from "react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { Auth } from "@supabase/auth-ui-react";
-import { Session } from "@supabase/supabase-js";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Wrapper from "./pages/Wrapper";
+
+import Home from "./pages/Home";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
-  const [session, setSession] = useState<Session | null>(null);
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const signOut = async () => {
-    const { error } = await supabase.auth.signOut();
-  };
-
-  const signIn = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-    });
-  };
-
-  if (!session) {
-    return (
-      <>
-        {/* <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} /> */}
-        <button onClick={signIn}>Sign in with google</button>
-      </>
-    );
-  } else {
-    return (
-      <div>
-        <h2>{session?.user?.email}</h2>
-        <button onClick={signOut}>Sign Out</button>
-      </div>
-    );
-  }
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/dashboard"
+          element={
+            <Wrapper>
+              <Dashboard />
+            </Wrapper>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
