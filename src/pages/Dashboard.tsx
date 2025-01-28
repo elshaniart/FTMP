@@ -1,7 +1,9 @@
 import { supabase } from "../utils/supabaseClient";
 import { useNavigate } from "react-router-dom";
+import useUser from "@/hooks/useUser";
 
 const Dashboard = () => {
+  const { user } = useUser();
   const navigate = useNavigate();
 
   const signOut = async () => {
@@ -13,9 +15,11 @@ const Dashboard = () => {
   };
 
   return (
-    <div>
-      <h1>Logged in</h1>
-      <button onClick={signOut}>Sign out</button>
+    <div className="">
+      <h1>Logged in as {user?.email}</h1>
+      <button onClick={signOut} className="btn">
+        Sign out
+      </button>
     </div>
   );
 };

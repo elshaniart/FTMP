@@ -14,3 +14,15 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.btn {
+  @apply bg-blue-400 h-[40px] flex items-center justify-center px-4 rounded-sm font-semibold hover:bg-blue-500 transition-all text-white cursor-pointer;
+}
+
+.btn-alt {
+  @apply bg-gray-200 text-black h-[40px] flex items-center justify-center px-4 rounded-sm font-semibold hover:bg-gray-300 transition-all cursor-pointer;
+}
+
+.input {
+  @apply bg-white rounded py-2.5 px-2 focus:outline-none;
+}
