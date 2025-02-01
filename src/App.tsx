@@ -10,7 +10,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <Wrapper>
+              <Home />
+            </Wrapper>
+          }
+        />
         <Route
           path="/register"
           element={
