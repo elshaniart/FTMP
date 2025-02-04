@@ -1,4 +1,9 @@
-const Sidebar = ({ userEmail = "", signOut }) => {
+interface SidebarProps {
+  userEmail?: string;
+  signOut: () => void;
+}
+
+const Sidebar = ({ userEmail = "", signOut }: SidebarProps) => {
   return (
     <>
       <div

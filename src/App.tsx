@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Onboarding from "./pages/Onboarding";
 
 function App() {
   return (
@@ -31,6 +32,14 @@ function App() {
           element={
             <Wrapper>
               <Login />
+            </Wrapper>
+          }
+        />
+        <Route
+          path="/onboarding"
+          element={
+            <Wrapper>
+              <Onboarding />
             </Wrapper>
           }
         />

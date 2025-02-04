@@ -2,6 +2,8 @@ import { supabase } from "../utils/supabaseClient";
 import { useNavigate } from "react-router-dom";
 import useUser from "@/hooks/useUser";
 import Sidebar from "@/components/Sidebar";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Dashboard = () => {
   const { user } = useUser();
@@ -14,6 +16,19 @@ const Dashboard = () => {
 
     navigate("/login");
   };
+
+  useEffect(() => {
+    const servr = async () => {
+      await axios
+        .get(import.meta.env.VITE_DEFAULT_URL)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => console.log(err));
+    };
+
+    servr();
+  }, []);
 
   return (
     <div className="h-screen w-full overflow-x-hidden">
